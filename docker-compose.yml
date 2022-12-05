@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  ###  APPLICATION CONTAINER 1 ### 
+  node-prometheus:
+    image: node-prometheus
+    container_name: node-prometheus
+    build :
+      context: ./node-prometheus
+      dockerfile: Dockerfile
+    ports: 
+      - '8000:8080'
+    restart: on-failure
+  ###  APPLICATION CONTAINER 2 ### 
+  django-app:
+    image: django-app
+    container_name: django-app
+    build :
+      context: ./polls-app/mysite
+      dockerfile: Dockerfile
+    ports: 
+      - '8001:8000'
+    restart: on-failure
+  ###  APPLICATION CONTAINER 3 ### 
+  tic-tac:
+    image: tic-tac
+    container_name: tic-tac
+    build :
+      context: ./tic-tac-toe
+      dockerfile: Dockerfile
+    ports: 
+      - '8002:3000'
+    restart: on-failure
