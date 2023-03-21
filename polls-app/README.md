@@ -57,7 +57,7 @@ cp .env.example .env
 >This creates a database for the project where all current and future data are stored.
 
 ```
-python manage.py migrate
+python manage.py makemigrations
 python manage.py migrate
 ```
 
