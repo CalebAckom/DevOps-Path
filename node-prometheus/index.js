@@ -28,9 +28,10 @@ app.get('/health', (req, res) => {
     timestamp: new Date().toISOString(),
     uptime: process.uptime(),
     version: '1.0.0',
-    requestId: req.headers['x-request-id'],
-    monitoring: monitoringService.getHealthStatus(),
   };
+
+  res.status(200).json(healthData);
+});
 
 startMetricsServer()
 
