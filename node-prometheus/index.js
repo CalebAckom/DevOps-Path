@@ -21,6 +21,17 @@ app.get('/', function (req, res) {
     res.send('P R O M E T H E U S!')
 });
 
+// Health check endpoint
+app.get('/health', (req, res) => {
+  const healthData = {
+    status: 'OK',
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+    version: '1.0.0',
+    requestId: req.headers['x-request-id'],
+    monitoring: monitoringService.getHealthStatus(),
+  };
+
 startMetricsServer()
 
 app.listen(8080, function () {
